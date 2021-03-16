@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,5 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/post',[PostController::class,'store']);
+Route::post('/user-1',[UserController::class,'getUserOne']);
+Route::post('/user-2',[UserController::class,'getUserTwo']);
+Route::post('/user-3',[UserController::class,'getUserThree']);
+Route::post('/user-4',[UserController::class,'getUserFour']);
 

@@ -4,70 +4,64 @@
         <div class="row">
             <div class="col-sm-6 col-sm-offset-3">
                 <div class="form-group">
-                    <label for="title">Post Title</label>
+                    <label for="title">User Name</label>
                     <input v-model="newPostTitle" id="title" type="text" class="form-control">
                 </div>
-                <div class="form-group">
-                    <label for="description">Post Description</label>
-                    <textarea v-model="newPostDesc" id="description" rows="8" class="form-control"></textarea>
+                <div style="margin-top: 10px;">
+                    <button @click="getUserOne()"
+                            class="btn btn-block btn-primary">User1</button>
+                    <button @click="getUserTwo()"
+                            class="btn btn-block btn-primary">User2</button>
+                    <button @click="getUserThree()"
+                            class="btn btn-block btn-primary">User3</button>
+                    <button @click="getUserFour()"
+                            class="btn btn-block btn-primary">User4</button>
                 </div>
-                <button @click="addPost(newPostTitle, newPostDesc)"
-                        :class="{disabled: (!newPostTitle || !newPostDesc)}"
-                        class="btn btn-block btn-primary">Submit</button>
+
             </div>
         </div>
     </div>
 </template>
-
 <script>
 export default {
     data() {
         return {
             newPostTitle: "",
-            newPostDesc: "",
             pusher:"",
             channel:"",
         }
     },
     created() {
-        this.listen();
+       // this.listen();
     },
     methods: {
-        addPost(postName, postDesc) {
-            // check if entries are not empty
-            if(!postName || !postDesc)
-                return;
-
+        getUserOne() {
             // make API to save post
-            axios.post('/api/post', {
-                title: postName, description: postDesc
-            }).then( response => {
+            axios.post('/api/user-1', null).then( response => {
                 console.log(response);
             })
         },
-        listen(){
-            console.log("i am listen" , Echo);
-            Echo.channel('demo')
-                .listen('PostPublished', post => {
-                    /*if (! ('Notification' in window)) {
-                        alert('Web Notification is not supported');
-                        return;
-                    }
-
-                    Notification.requestPermission( permission => {
-                        console.log("i am here");
-                        let notification = new Notification('New post alert!', {
-                            body: post.title, // content for the alert
-                            icon: "https://pusher.com/static_logos/320x320.png" // optional image url
-                        });
-
-                        // link to page on clicking the notification
-                        notification.onclick = () => {
-                            window.open(window.location.href);
-                        };
-                    }); */
-                    console.log("post", post);
-                })
+        getUserTwo(){
+            // make API to save post
+            axios.post('/api/user-2',
+              null
+            ).then( response => {
+                console.log(response);
+            })
+        },
+        getUserThree() {
+            // make API to save post
+            axios.post('/api/user-3', null).then( response => {
+                console.log(response);
+            })
+        },
+        getUserFour(){
+            // make API to save post
+            axios.post('/api/user-4',
+                null
+            ).then( response => {
+                console.log(response);
+            })
         }
     },
 

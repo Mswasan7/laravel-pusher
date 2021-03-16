@@ -41933,51 +41933,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             newPostTitle: "",
-            newPostDesc: "",
             pusher: "",
             channel: ""
         };
     },
     created: function created() {
-        this.listen();
+        // this.listen();
     },
 
     methods: {
-        addPost: function addPost(postName, postDesc) {
-            // check if entries are not empty
-            if (!postName || !postDesc) return;
-
+        getUserOne: function getUserOne() {
             // make API to save post
-            axios.post('/api/post', {
-                title: postName, description: postDesc
-            }).then(function (response) {
+            axios.post('/api/user-1', null).then(function (response) {
                 console.log(response);
             });
         },
-        listen: function listen() {
-            console.log("i am listen", Echo);
-            Echo.channel('demo').listen('PostPublished', function (post) {
-                /*if (! ('Notification' in window)) {
-                    alert('Web Notification is not supported');
-                    return;
-                }
-                 Notification.requestPermission( permission => {
-                    console.log("i am here");
-                    let notification = new Notification('New post alert!', {
-                        body: post.title, // content for the alert
-                        icon: "https://pusher.com/static_logos/320x320.png" // optional image url
-                    });
-                     // link to page on clicking the notification
-                    notification.onclick = () => {
-                        window.open(window.location.href);
-                    };
-                }); */
-                console.log("post", post);
+        getUserTwo: function getUserTwo() {
+            // make API to save post
+            axios.post('/api/user-2', null).then(function (response) {
+                console.log(response);
+            });
+        },
+        getUserThree: function getUserThree() {
+            // make API to save post
+            axios.post('/api/user-3', null).then(function (response) {
+                console.log(response);
+            });
+        },
+        getUserFour: function getUserFour() {
+            // make API to save post
+            axios.post('/api/user-4', null).then(function (response) {
+                console.log(response);
             });
         }
     }
@@ -41996,7 +41990,7 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-sm-6 col-sm-offset-3" }, [
         _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "title" } }, [_vm._v("Post Title")]),
+          _c("label", { attrs: { for: "title" } }, [_vm._v("User Name")]),
           _vm._v(" "),
           _c("input", {
             directives: [
@@ -42021,47 +42015,59 @@ var render = function() {
           })
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "description" } }, [
-            _vm._v("Post Description")
-          ]),
-          _vm._v(" "),
-          _c("textarea", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.newPostDesc,
-                expression: "newPostDesc"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { id: "description", rows: "8" },
-            domProps: { value: _vm.newPostDesc },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+        _c("div", { staticStyle: { "margin-top": "10px" } }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-block btn-primary",
+              on: {
+                click: function($event) {
+                  return _vm.getUserOne()
                 }
-                _vm.newPostDesc = $event.target.value
               }
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-block btn-primary",
-            class: { disabled: !_vm.newPostTitle || !_vm.newPostDesc },
-            on: {
-              click: function($event) {
-                return _vm.addPost(_vm.newPostTitle, _vm.newPostDesc)
+            },
+            [_vm._v("User1")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-block btn-primary",
+              on: {
+                click: function($event) {
+                  return _vm.getUserTwo()
+                }
               }
-            }
-          },
-          [_vm._v("Submit")]
-        )
+            },
+            [_vm._v("User2")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-block btn-primary",
+              on: {
+                click: function($event) {
+                  return _vm.getUserThree()
+                }
+              }
+            },
+            [_vm._v("User3")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-block btn-primary",
+              on: {
+                click: function($event) {
+                  return _vm.getUserFour()
+                }
+              }
+            },
+            [_vm._v("User4")]
+          )
+        ])
       ])
     ])
   ])
